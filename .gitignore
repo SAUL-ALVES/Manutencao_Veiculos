@@ -1,15 +1,41 @@
+# Diretórios do Android Studio
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+
+# Gradle
+.gradle/
+build/
+*/build/
+
+# Configurações locais
 local.properties
+
+# Cache e arquivos temporários
+.cxx/
+captures/
+.externalNativeBuild/
+*.log
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de empacotamento
+*.apk
+*.ap_
+*.aab
+
+# Arquivos de backup
+*.swp
+*.bak
+
+# IntelliJ específicos
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# Arquivos de teste
+outputs/
