@@ -9,10 +9,10 @@ import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import android.graphics.Color
+import androidx.appcompat.app.AppCompatActivity
 
-class CadastroVeiculoActivity : ComponentActivity() {
+class CadastroVeiculoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,25 +31,25 @@ class CadastroVeiculoActivity : ComponentActivity() {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent) as TextView
                 if (position == 0) {
-                    // Se for o "hint"
-                    view.setTextColor(Color.GRAY) // cor de hint
+
+                    view.setTextColor(Color.GRAY)
                 } else {
-                    view.setTextColor(Color.BLACK) // itens normais
+                    view.setTextColor(Color.BLACK)
                 }
                 return view
             }
 
             override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getDropDownView(position, convertView, parent) as TextView
-                view.setTextColor(Color.BLACK) // todos os itens da lista normais
+                view.setTextColor(Color.BLACK)
                 return view
             }
         }
 
-// Layout do spinner quando fechado
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerTipo.adapter = adapter
-        spinnerTipo.setSelection(0) // mostra o hint no início
+        spinnerTipo.setSelection(0)
 
         btnSalvarVeiculo.setOnClickListener {
             if (spinnerTipo.selectedItemPosition == 0) {
