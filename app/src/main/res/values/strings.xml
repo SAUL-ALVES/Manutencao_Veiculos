@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Manutenção de Veículos</string>
+    <string-array name="tipos_veiculo">
+        <item>Tipo de Veículo</item>
+        <item>Carro</item>
+        <item>Moto</item>
+        <item>Caminhão</item>
+    </string-array>
+</resources>

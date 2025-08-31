@@ -1,0 +1,27 @@
+package com.example.manutencaodeveiculos
+
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import com.example.manutencaodeveiculos.data.AppDatabase
+import com.example.manutencaodeveiculos.data.GastoMensal
+import com.example.manutencaodeveiculos.data.GastoPorCategoria
+
+class GraficosViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val db = AppDatabase.getDatabase(application)
+    private val manutencaoDao = db.manutencaoDao()
+    private val usuarioDao = db.usuarioDao() // Precisamos do orçamento
+
+    val gastosPorCategoria: LiveData<List<GastoPorCategoria>>
+    val gastosMensais: LiveData<List<GastoMensal>>
+    val orcamentoUsuario: LiveData<Double?> // LiveData para o orçamento
+
+    init {
+        gastosPorCategoria = manutencaoDao.getGastosPorCategoria()
+        gastosMensais = manutencaoDao.getGastosMensais()
+        // Supondo que você tenha apenas um usuário, pegamos o primeiro.
+        // O ideal seria passar o ID do usuário logado.
+        orcamentoUsuario = usuarioDao.getOrcamento(1)
+    }
+}

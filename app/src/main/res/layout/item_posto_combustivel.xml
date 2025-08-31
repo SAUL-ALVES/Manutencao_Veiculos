@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvNomePosto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Posto Central" />
+
+        <TextView
+            android:id="@+id/tvEnderecoPosto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/tvNomePosto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="R. Cel. Lourenço Feitosa, 45 - Centro" />
+
+        <GridLayout
+            android:id="@+id/gridPrecos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:columnCount="2"
+            app:layout_constraintTop_toBottomOf="@id/tvEnderecoPosto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView android:text="Gasolina Comum:" android:layout_marginEnd="8dp" android:textStyle="bold"/>
+            <TextView android:id="@+id/tvPrecoGasolinaComum" tools:text="R$ 5,89" />
+
+            <TextView android:text="Gasolina Aditivada:" android:layout_marginEnd="8dp" android:textStyle="bold"/>
+            <TextView android:id="@+id/tvPrecoGasolinaAditivada" tools:text="R$ 6,05" />
+
+            <TextView android:text="Etanol:" android:layout_marginEnd="8dp" android:textStyle="bold"/>
+            <TextView android:id="@+id/tvPrecoEtanol" tools:text="R$ 4,19" />
+
+            <TextView android:text="Diesel S10:" android:layout_marginEnd="8dp" android:textStyle="bold"/>
+            <TextView android:id="@+id/tvPrecoDieselS10" tools:text="R$ 6,15" />
+        </GridLayout>
+
+        <TextView
+            android:id="@+id/tvUltimaAtualizacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintTop_toBottomOf="@id/gridPrecos"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Atualizado em: 31/08/2025 10:00" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
