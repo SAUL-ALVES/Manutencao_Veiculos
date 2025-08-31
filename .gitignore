@@ -1,0 +1,49 @@
+# ===============================================
+# Arquivos de Dependências e Build do Gradle
+# ===============================================
+.gradle/
+build/
+.idea/caches/
+.idea/libraries/
+# Ação de build do Gradle, gerada ao executar o app pelo terminal
+.gradle-build-action-*.json
+
+# ===============================================
+# Arquivos Locais (NUNCA DEVEM SER ENVIADOS)
+# ===============================================
+local.properties
+# Arquivos de Chaves de Assinatura (MUITO IMPORTANTE PARA SEGURANÇA)
+*.keystore
+*.jks
+# Chaves privadas do Google (ex: API Keys) que podem estar em um arquivo properties
+*.private.properties
+
+# ===============================================
+# Arquivos de Configuração da IDE (Android Studio)
+# ===============================================
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea/workspace.xml
+.idea/deployment.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# ===============================================
+# Arquivos de Saída (Builds do App)
+# ===============================================
+*.apk
+*.aab
+*.ap_
+
+# ===============================================
+# Outros
+# ===============================================
+# Arquivos de sistema do MacOS
+.DS_Store
+# Capturas de tela do Android Studio
+/captures
+# Arquivos de build de código nativo (C/C++)
+.externalNativeBuild
+.cxx
