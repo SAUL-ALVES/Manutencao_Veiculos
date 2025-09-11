@@ -8,6 +8,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar // Import adicionado
 import androidx.lifecycle.lifecycleScope
 import com.example.manutencaodeveiculos.data.AppDatabase
 import com.example.manutencaodeveiculos.data.Manutencao
@@ -27,22 +28,24 @@ class RegistroManutencaoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.registro_manutencao)
 
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         db = AppDatabase.getDatabase(this)
 
-        // --- REFERÊNCIAS AOS COMPONENTES ---
+
         val autoCompleteVeiculo = findViewById<AutoCompleteTextView>(R.id.autoCompleteVeiculo)
-        // 1. CORRIGIDO: Pegando o AutoCompleteTextView da categoria, não um Spinner.
         val autoCompleteCategoria = findViewById<AutoCompleteTextView>(R.id.autoCompleteCategoria)
-        val etTipoManutencao = findViewById<TextInputEditText>(R.id.etTipoManutencao) // Este agora é a descrição
+        val etTipoManutencao = findViewById<TextInputEditText>(R.id.etTipoManutencao)
         val etData = findViewById<TextInputEditText>(R.id.etData)
         val etQuilometragem = findViewById<TextInputEditText>(R.id.etQuilometragem)
         val etCusto = findViewById<TextInputEditText>(R.id.etCusto)
         val btnSalvarManutencao = findViewById<Button>(R.id.btnSalvarManutencao)
 
-        // --- CONFIGURAÇÃO DOS COMPONENTES ---
-        carregarVeiculosDoUsuario(autoCompleteVeiculo)
 
-        // 2. ADICIONADO: Lógica para popular o seletor de categorias
+        carregarVeiculosDoUsuario(autoCompleteVeiculo)
         popularSeletorDeCategorias(autoCompleteCategoria)
 
         etData.setOnClickListener {
@@ -50,16 +53,13 @@ class RegistroManutencaoActivity : AppCompatActivity() {
         }
 
         btnSalvarManutencao.setOnClickListener {
-            // --- COLETA DE DADOS DA TELA ---
             val nomeVeiculoSelecionado = autoCompleteVeiculo.text.toString().trim()
-            // 3. ADICIONADO: Pegando o valor da categoria selecionada
             val categoriaSelecionada = autoCompleteCategoria.text.toString().trim()
-            val tipoManutencao = etTipoManutencao.text.toString().trim() // Descrição
+            val tipoManutencao = etTipoManutencao.text.toString().trim()
             val data = etData.text.toString().trim()
             val kmStr = etQuilometragem.text.toString().trim()
             val custoStr = etCusto.text.toString().trim()
 
-            // 4. ATUALIZADO: Validação agora inclui o campo de categoria
             if (nomeVeiculoSelecionado.isEmpty() || categoriaSelecionada.isEmpty() || tipoManutencao.isEmpty() || data.isEmpty() || kmStr.isEmpty() || custoStr.isEmpty()) {
                 Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -78,11 +78,10 @@ class RegistroManutencaoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // 5. ATUALIZADO: Criando o objeto Manutencao com o novo campo 'categoria'
             val novaManutencao = Manutencao(
                 veiculoId = veiculoSelecionado.id,
-                categoria = categoriaSelecionada, // Campo novo
-                tipo = tipoManutencao,            // Campo que agora é a descrição
+                categoria = categoriaSelecionada,
+                tipo = tipoManutencao,
                 data = data,
                 quilometragem = quilometragem,
                 custo = custo
@@ -96,7 +95,12 @@ class RegistroManutencaoActivity : AppCompatActivity() {
         }
     }
 
-    // NOVA FUNÇÃO para popular as categorias
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
+    }
+
     private fun popularSeletorDeCategorias(autoCompleteCategoria: AutoCompleteTextView) {
         val categorias = listOf(
             "Revisão Periódica", "Freios", "Pneus", "Suspensão e Direção",
@@ -108,7 +112,6 @@ class RegistroManutencaoActivity : AppCompatActivity() {
     }
 
     private fun carregarVeiculosDoUsuario(autoCompleteVeiculo: AutoCompleteTextView) {
-        // ... seu código para carregar veículos permanece igual ...
         val sharedPrefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         var usuarioIdAtual: Int
         try {
@@ -128,7 +131,6 @@ class RegistroManutencaoActivity : AppCompatActivity() {
     }
 
     private fun mostrarSeletorDeData(editText: TextInputEditText) {
-        // ... seu código do seletor de data permanece igual ...
         val calendario = Calendar.getInstance()
         val ano = calendario.get(Calendar.YEAR)
         val mes = calendario.get(Calendar.MONTH)

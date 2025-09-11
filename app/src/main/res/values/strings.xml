@@ -6,4 +6,6 @@
         <item>Moto</item>
         <item>Caminhão</item>
     </string-array>
+    <string name="open_drawer">Abrir menu</string>
+    <string name="close_drawer">Fechar menu</string>
 </resources>

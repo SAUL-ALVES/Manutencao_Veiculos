@@ -10,9 +10,7 @@ class ListaManutencoesViewModel(application: Application) : AndroidViewModel(app
 
     private val manutencaoDao = AppDatabase.getDatabase(application).manutencaoDao()
 
-    // LiveData que contém a lista de todas as manutenções
-    // Para simplificar, estamos buscando de todos os veículos.
-    // Se quisesse de um veículo específico, passaria o ID do veículo aqui.
+
     val todasManutencoes: LiveData<List<Manutencao>>
 
     init {

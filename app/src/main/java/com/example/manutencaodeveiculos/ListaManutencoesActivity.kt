@@ -2,6 +2,7 @@ package com.example.manutencaodeveiculos
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,26 +16,34 @@ class ListaManutencoesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lista_manutencoes)
 
-        // 1. Inicializa o ViewModel
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(ListaManutencoesViewModel::class.java)
 
-        // 2. Configura o RecyclerView
+
         val rvManutencoes = findViewById<RecyclerView>(R.id.rvManutencoes)
-        manutencaoAdapter = ManutencaoAdapter(emptyList()) // Começa com uma lista vazia
+        manutencaoAdapter = ManutencaoAdapter(emptyList())
         rvManutencoes.layoutManager = LinearLayoutManager(this)
         rvManutencoes.adapter = manutencaoAdapter
 
-        // 3. Observa as mudanças nos dados
+
         viewModel.todasManutencoes.observe(this) { manutenções ->
-            // Quando a lista de manutenções mudar no banco de dados,
-            // esta função será chamada automaticamente.
             manutenções?.let {
-                // Atualiza o adapter com os novos dados.
                 manutencaoAdapter.updateData(it)
             }
         }
+    }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
     }
 }

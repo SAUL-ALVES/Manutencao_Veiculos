@@ -3,6 +3,7 @@ package com.example.manutencaodeveiculos
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.charts.BarChart
@@ -25,11 +26,22 @@ class GraficosRelatoriosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.graficos_relatorios)
 
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         viewModel = ViewModelProvider(this).get(GraficosViewModel::class.java)
         pieChart = findViewById(R.id.pieChartCategorias)
         barChart = findViewById(R.id.barChartGastosMensais)
 
         setupObservers()
+    }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
     }
 
     private fun setupObservers() {
@@ -38,7 +50,6 @@ class GraficosRelatoriosActivity : AppCompatActivity() {
                 pieChart.setNoDataText("Sem dados de gastos por categoria.")
                 pieChart.invalidate()
             } else {
-
                 setupPieChart(gastos.map { PieEntry(it.total, it.categoria) })
             }
         }
@@ -86,7 +97,7 @@ class GraficosRelatoriosActivity : AppCompatActivity() {
         val data = BarData(gastoDataSet, orcamentoDataSet)
         barChart.data = data
 
-        val meses = gastos.map { it.anoMes.substring(5, 7) + "/" + it.anoMes.substring(2, 4) } // "MM/AA"
+        val meses = gastos.map { it.anoMes.substring(5, 7) + "/" + it.anoMes.substring(2, 4) }
         barChart.xAxis.valueFormatter = IndexAxisValueFormatter(meses)
         barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
         barChart.xAxis.granularity = 1f
@@ -95,7 +106,6 @@ class GraficosRelatoriosActivity : AppCompatActivity() {
         barChart.description.isEnabled = false
         barChart.animateY(1000)
 
-        // Configuração para agrupar as barras
         val groupSpace = 0.4f
         val barSpace = 0.05f
         val barWidth = 0.25f

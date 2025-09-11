@@ -15,14 +15,14 @@ import kotlinx.coroutines.launch
 
 class CadastroUsuarioActivity : AppCompatActivity() {
 
-    // 1. Declare uma variável para a instância do banco de dados
+
     private lateinit var db: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cadastro_usuario)
 
-        // 2. Inicialize a instância do banco de dados
+
         db = AppDatabase.getDatabase(this)
 
         val etNome = findViewById<EditText>(R.id.etNome)
@@ -44,15 +44,15 @@ class CadastroUsuarioActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // 3. Crie o objeto Usuario com os dados da tela
+
             val novoUsuario = Usuario(nome = nome, orcamentoMensal = orcamento)
 
-            // 4. Coroutine para salvar os dados em segundo plano
+
             lifecycleScope.launch {
-                // A função 'inserir' agora retorna o ID do novo usuário
+
                 val novoUsuarioId = db.usuarioDao().inserir(novoUsuario)
 
-                // Salva a flag de que o usuário está registrado E o ID dele
+
                 val sharedPrefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
                 with(sharedPrefs.edit()) {
                     putBoolean("USER_REGISTERED", true)

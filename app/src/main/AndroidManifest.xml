@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,13 +24,30 @@
             android:name=".CadastroUsuarioActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false" />
 
-        <activity android:name=".DashboardActivity" android:exported="false"/>
-        <activity android:name=".CadastroVeiculoActivity" android:exported="false"/>
-        <activity android:name=".GraficosRelatoriosActivity" android:exported="false"/>
-        <activity android:name=".ListaManutencoesActivity" android:exported="false"/>
-        <activity android:name=".RegistroManutencaoActivity" android:exported="false"/>
-        <activity android:name=".PostosCombustivelActivity" android:exported="false"/>
+        <activity
+            android:name=".CadastroVeiculoActivity"
+            android:exported="false"
+            android:parentActivityName=".DashboardActivity" />
+        <activity
+            android:name=".GraficosRelatoriosActivity"
+            android:exported="false"
+            android:parentActivityName=".DashboardActivity" />
+        <activity
+            android:name=".ListaManutencoesActivity"
+            android:exported="false"
+            android:parentActivityName=".DashboardActivity" />
+        <activity
+            android:name=".RegistroManutencaoActivity"
+            android:exported="false"
+            android:parentActivityName=".DashboardActivity" />
+        <activity
+            android:name=".PostosCombustivelActivity"
+            android:exported="false"
+            android:parentActivityName=".DashboardActivity" />
 
     </application>
 

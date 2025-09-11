@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    android:paddingTop="40dp"
-    android:paddingBottom="24dp"
-    android:paddingStart="24dp"
-    android:paddingEnd="24dp">
+    tools:context=".CadastroVeiculoActivity">
 
-    <!-- Título -->
-    <TextView
-        android:id="@+id/tvTituloVeiculo"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Cadastro de Veículo"
-        android:textColor="#212121"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:gravity="center"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryVariant"
+        android:elevation="4dp"
+        app:title="Cadastro de Veículo"
+        app:titleTextColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Ícone ilustrativo -->
     <ImageView
         android:id="@+id/imgVeiculo"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@android:drawable/ic_menu_compass"
         android:contentDescription="Ícone Veículo"
-        app:layout_constraintTop_toBottomOf="@id/tvTituloVeiculo"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp" />
 
-    <!-- Campo Nome do Veículo -->
     <EditText
         android:id="@+id/etNomeVeiculo"
         android:layout_width="0dp"
@@ -47,9 +43,10 @@
         app:layout_constraintTop_toBottomOf="@id/imgVeiculo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp" />
 
-    <!-- Campo Placa -->
     <EditText
         android:id="@+id/etPlaca"
         android:layout_width="0dp"
@@ -61,9 +58,10 @@
         app:layout_constraintTop_toBottomOf="@id/etNomeVeiculo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp" />
 
-    <!-- Campo Quilometragem -->
     <EditText
         android:id="@+id/etQuilometragem"
         android:layout_width="0dp"
@@ -75,9 +73,10 @@
         app:layout_constraintTop_toBottomOf="@id/etPlaca"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp" />
 
-    <!-- Spinner Tipo do Veículo -->
     <Spinner
         android:id="@+id/spinnerTipo"
         android:layout_width="0dp"
@@ -87,10 +86,10 @@
         app:layout_constraintTop_toBottomOf="@id/etQuilometragem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"/>
 
-
-    <!-- Botão Salvar -->
     <Button
         android:id="@+id/btnSalvarVeiculo"
         android:layout_width="0dp"
@@ -102,6 +101,8 @@
         app:layout_constraintTop_toBottomOf="@id/spinnerTipo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

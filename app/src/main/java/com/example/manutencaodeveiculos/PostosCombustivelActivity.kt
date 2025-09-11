@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,11 @@ class PostosCombustivelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_postos_combustivel)
 
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         viewModel = ViewModelProvider(this).get(PostosViewModel::class.java)
 
         rvPostos = findViewById(R.id.rvPostos)
@@ -31,10 +37,16 @@ class PostosCombustivelActivity : AppCompatActivity() {
         setupObservers()
     }
 
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
+    }
+
     private fun setupObservers() {
         viewModel.postos.observe(this) { postos ->
             if (postos.isNullOrEmpty()) {
-                // Se a lista for vazia, poderia mostrar uma mensagem específica
+
             } else {
                 rvPostos.adapter = PostosAdapter(postos)
                 rvPostos.visibility = View.VISIBLE

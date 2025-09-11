@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "veiculos",
-    // Define que 'usuarioId' é uma chave estrangeira que aponta para o 'id' da tabela 'usuarios'
+
     foreignKeys = [
         ForeignKey(
             entity = Usuario::class,
@@ -22,7 +22,7 @@ import androidx.room.PrimaryKey
 data class Veiculo(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val usuarioId: Int, // Chave para ligar ao Usuário
+    val usuarioId: Int,
     val nome: String,
     val placa: String,
     val quilometragem: Int,

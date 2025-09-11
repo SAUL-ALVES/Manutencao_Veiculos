@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="corGasto">#E53935</color>
     <color name="corOrcamento">#1E88E5</color>
+    <color name="colorPrimaryVariant">#FF9800</color>
 </resources>

@@ -9,16 +9,5 @@
         android:id="@+id/action_add_manutencao"
         android:title="Registrar manutenção" />
 
-    <item
-        android:id="@+id/action_show_historico"
-        android:title="Histórico de manutenções" />
-
-    <item
-        android:id="@+id/action_show_graficos"
-        android:title="Gráficos e relatórios" />
-
-    <item
-        android:id="@+id/action_ver_postos"
-        android:title="Preços de Combustíveis" />
 
 </menu>
